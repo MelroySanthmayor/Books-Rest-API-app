@@ -15,8 +15,14 @@ exports.book_create = function (req, res, next) {
         if (err) return res.status(500).send("There was a problem adding the information to the database.");
         const User = user;
         User.books.push({title: req.body.title, author: req.body.author});
-        User.save();
-        res.status(200).send(user);
+        User.save(function (err) {
+            if (err){
+                return next(err);
+
+            }
+            res.status(200).send(user);
+        });
+        
     });
 
     // product.save(function (err) {
@@ -29,9 +35,16 @@ exports.book_create = function (req, res, next) {
 
 // Get list of books
 
-exports.book_details = function (req, res) {
-    Books.find({}, function (err, books) {
-        if (err) return next(err);
-        res.send(books);
-    })
+exports.books_details = function (req, res, next) {
+    Users.findById(req.userId, function (err, user) {
+        if (err) {
+            return next(err);
+        }
+        //const User = user;
+        // var data = {
+        //     user_books : User.books
+        // }
+        // res.status(200).send(data);
+        res.status(200).send(user);
+    });
 };
