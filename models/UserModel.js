@@ -5,7 +5,7 @@ var UserSchema = new mongoose.Schema({
   name: String,
   email: String,
   password: String,
-  books: BookSchema
+  books: [BookSchema]
 });
 mongoose.model('User', UserSchema);
 

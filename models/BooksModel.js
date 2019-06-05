@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var BooksSchema = new mongoose.Schema({
     title : String,
-    Author : String
+    author : String
 });
 mongoose.model('Book', BooksSchema);
 
