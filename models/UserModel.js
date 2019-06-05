@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');  
-var BookSchema = require('./books_model');
+var BookSchema = require('./BooksModel');
 // embedding technique, exlpore reference technique for relational data
 var UserSchema = new mongoose.Schema({
   name: String,

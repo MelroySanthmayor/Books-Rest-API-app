@@ -3,8 +3,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
-var books = require('./routes/books'); // Imports routes for the books
-var users = require('./routes/user_routes'); // Import routes for the users
+var books = require('./routes/BookRoutes'); // Imports routes for the books
+var users = require('./routes/UserRoutes'); // Import routes for the users
+var auth = require('./routes/AuthRoutes'); // Import routes for the authentication
 var app = express();
 
 
@@ -18,6 +19,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use('/api/auth', auth);
 app.use('/user', users);
 app.use('/books', books);
 

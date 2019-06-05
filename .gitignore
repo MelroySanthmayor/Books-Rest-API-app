@@ -1,0 +1,3 @@
+# files to ignore for repo commits
+
+/node_modules

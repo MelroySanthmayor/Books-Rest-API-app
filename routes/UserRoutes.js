@@ -2,11 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 // Require the controllers WHICH WE DID NOT CREATE YET!!
-var user_controller = require('../controllers/user_controller');
+var user_controller = require('../controllers/UserController');
 
-
-// a simple test url to check that all of our files are communicating correctly.
-router.get('/test', user_controller.test);
 
 
 router.post('/', user_controller.user_create);

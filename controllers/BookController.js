@@ -1,6 +1,6 @@
-var Users = require('../models/user_model');
-var Books = require('../models/books_model');
-var CurrentUser = require('../controllers/user_controller');
+var Users = require('../models/UserModel');
+var Books = require('../models/BooksModel');
+var CurrentUser = require('./UserController');
 
 var User = CurrentUser.CurrentUser // get current user for adding books
 
