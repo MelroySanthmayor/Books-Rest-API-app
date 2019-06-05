@@ -46,3 +46,7 @@ exports.loginUser = function (req, res) {
         res.status(200).send({ auth: true, token: token });
     });
 }
+
+exports.logoutUser = function (req, res){
+    res.status(200).send({ auth: false, token: null }); // logout cn be handled in client side it self by clearing the local storage to which we set the token when logging in
+}
