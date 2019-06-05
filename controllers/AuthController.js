@@ -33,7 +33,7 @@ exports.currentUser = function (req, res) {
     });
 }
 
-exports.loginUser = function (req, res) {
+exports.loginUser = function (req, res, next) {
     User.findOne({ email: req.body.email }, function (err, user) {
         if (err)
             return res.status(500).send('Error on the server.');
@@ -48,5 +48,5 @@ exports.loginUser = function (req, res) {
 }
 
 exports.logoutUser = function (req, res){
-    res.status(200).send({ auth: false, token: null }); // logout cn be handled in client side it self by clearing the local storage to which we set the token when logging in
+    res.status(200).send({ auth: false, token: null }); // logout can be handled in client side it self by clearing the local storage to which we set the token when logging in
 }
