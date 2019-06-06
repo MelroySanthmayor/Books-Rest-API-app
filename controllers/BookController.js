@@ -40,11 +40,41 @@ exports.books_details = function (req, res, next) {
         if (err) {
             return next(err);
         }
-        //const User = user;
-        // var data = {
-        //     user_books : User.books
-        // }
-        // res.status(200).send(data);
-        res.status(200).send(user);
+        const User = user;
+        var data = {
+            user_books : User.books
+        }
+        res.status(200).send(data);
     });
 };
+
+// result returns a list of books as follows
+// {
+//     "user_books": [
+//         {
+//             "_id": "5cf7f0768843d87b0d5897b1",
+//             "title": "Harry Potter and the Order of the Pheonix",
+//             "author": "J.K Rowling"
+//         },
+//         {
+//             "_id": "5cf806e72a72ee7d346a2c0d",
+//             "title": "Harry Potter and the Prisoner of Azkaban",
+//             "author": "J.K Rowling"
+//         },
+//         {
+//             "_id": "5cf807162a72ee7d346a2c0e",
+//             "title": "Harry Potter and the Goblet of Fire",
+//             "author": "J.K Rowling"
+//         },
+//         {
+//             "_id": "5cf80bd360f6177fed9056b4",
+//             "title": "Harry Potter and the Deathly Hallows",
+//             "author": "J.K Rowling"
+//         },
+//         {
+//             "_id": "5cf811ae2b92c903e91fcd5c",
+//             "title": "Harry Potter and the Sorcerer's Stone",
+//             "author": "J.K Rowling"
+//         }
+//     ]
+// }

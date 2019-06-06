@@ -12,7 +12,7 @@ router.get('/test', book_controller.test);
 
 router.post('/create', VerifyToken, book_controller.book_create);
 
-router.get('/books_list', VerifyToken, book_controller.books_details);
+router.get('/list', VerifyToken, book_controller.books_details);
 
 
 
