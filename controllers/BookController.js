@@ -1,6 +1,10 @@
 var Users = require('../models/UserModel');
 var Books = require('../models/BooksModel');
 var CurrentUser = require('./UserController');
+var MongoClient = require('mongodb').MongoClient; // for writing queries to the db
+var url = 'mongodb://localhost/books';
+const JSON = require('circular-json');
+var ObjectId = require('mongodb').ObjectID;
 
 var User = CurrentUser.CurrentUser // get current user for adding books
 // books: {title: req.body.title, author: req.body.author}
@@ -48,6 +52,36 @@ exports.books_details = function (req, res, next) {
     });
 };
 
+exports.book_filter = function (req, res, next) {
+    MongoClient.connect(url, { useNewUrlParser: true }, function(err, client) {
+        var db = client.db('books');
+        // if(db.collection('users').getIndexes().length > 0){
+        //     db.collection('users'.dropIndex())
+        // }
+        //db.collection('users').dropIndex("title_text_author_text");
+        //db.collection('users').createIndex( { title : "text" });
+        // query : $where: function() { return this._id === ObjectId(req.userId) },
+        //$text: {$search: req.query.text}}
+        db.collection('users').find({ $text: {$search: req.query.text}}).toArray(function(err, result) {  
+            if (err) throw err;  
+            console.log(req.userId, req.query.text);
+            res.send(result);
+        //noinspection JSDeprecatedSymbols
+        // cursor.each(function(err, item) {
+        
+        //     if (item != null) {
+                
+        //     }
+        // });
+        
+            client.close();
+        });
+        // var json = JSON.stringify(cursor)
+        // res.send(json);
+        // client.close();
+   });
+} 
+
 // result returns a list of books as follows
 // {
 //     "user_books": [
@@ -78,3 +112,18 @@ exports.books_details = function (req, res, next) {
 //         }
 //     ]
 // }
+
+// .toArray(function(err, result) {  
+//     if (err) throw err;  
+//     console.log(req.query.text);
+//     res.send(result);
+// //noinspection JSDeprecatedSymbols
+// // cursor.each(function(err, item) {
+
+// //     if (item != null) {
+        
+// //     }
+// // });
+
+//     client.close();
+// });

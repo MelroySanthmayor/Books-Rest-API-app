@@ -14,6 +14,8 @@ router.post('/create', VerifyToken, book_controller.book_create);
 
 router.get('/list', VerifyToken, book_controller.books_details);
 
+router.get('/filter', VerifyToken, book_controller.book_filter);
+
 
 
 module.exports = router;
