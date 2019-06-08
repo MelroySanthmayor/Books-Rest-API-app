@@ -2,6 +2,7 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
+const cors = require('cors');
 
 var books = require('./routes/BookRoutes'); // Imports routes for the books
 var users = require('./routes/UserRoutes'); // Import routes for the users
@@ -19,6 +20,8 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(cors());
+app.options('*', cors());
 app.use('/api/auth', auth);
 app.use('/user', users);
 app.use('/books', books);
