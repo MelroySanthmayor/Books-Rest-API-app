@@ -45,6 +45,7 @@ exports.books_details = function (req, res, next) {
         }
         const User = user;
         var data = {
+            user_name : User.name,
             user_books : User.books
         }
         res.status(200).send(data);
