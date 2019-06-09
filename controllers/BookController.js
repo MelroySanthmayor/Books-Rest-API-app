@@ -23,7 +23,7 @@ exports.book_create = function (req, res, next) {
                 return next(err);
 
             }
-            res.status(200).send(user);
+            res.status(200).send(user.books);
         });
         
     });
